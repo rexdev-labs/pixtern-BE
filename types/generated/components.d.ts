@@ -62,6 +62,21 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSocialMedia extends Struct.ComponentSchema {
+  collectionName: 'components_shared_social_medias';
+  info: {
+    displayName: 'Social Media';
+    icon: 'paperPlane';
+  };
+  attributes: {
+    platform: Schema.Attribute.Enumeration<
+      ['youtube', 'linkedin', 'instagram', 'telegram', 'facebook', 'github']
+    > &
+      Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -70,6 +85,7 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'shared.social-media': SharedSocialMedia;
     }
   }
 }

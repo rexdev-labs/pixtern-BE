@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_social_medias",
+  "info": {
+    "displayName": "Social Media",
+    "icon": "paperPlane"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "youtube",
+        "linkedin",
+        "instagram",
+        "telegram",
+        "facebook",
+        "github"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}
