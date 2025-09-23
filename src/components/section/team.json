@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_section_teams",
+  "info": {
+    "displayName": "Team Section"
+  },
+  "options": {},
+  "attributes": {
+    "section": {
+      "type": "component",
+      "component": "shared.section",
+      "repeatable": false
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team.team"
+    }
+  },
+  "config": {}
+}

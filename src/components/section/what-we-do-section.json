@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_section_what_we_do_sections",
+  "info": {
+    "displayName": "What We Do Section"
+  },
+  "options": {},
+  "attributes": {
+    "section": {
+      "type": "component",
+      "component": "shared.section",
+      "repeatable": false,
+      "required": true
+    },
+    "jobs": {
+      "type": "component",
+      "component": "shared.job",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

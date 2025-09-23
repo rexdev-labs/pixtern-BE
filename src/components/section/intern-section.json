@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_section_intern_sections",
+  "info": {
+    "displayName": "Intern Section"
+  },
+  "options": {},
+  "attributes": {
+    "section": {
+      "type": "component",
+      "component": "shared.section",
+      "repeatable": false
+    },
+    "interns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::intern.intern"
+    }
+  },
+  "config": {}
+}

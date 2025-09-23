@@ -437,6 +437,56 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
+  collectionName: 'homepages';
+  info: {
+    displayName: 'Homepage';
+    pluralName: 'homepages';
+    singularName: 'homepage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    aboutSection: Schema.Attribute.Component<'shared.section', false> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heroSection: Schema.Attribute.Component<'shared.button', false> &
+      Schema.Attribute.Required;
+    internSection: Schema.Attribute.Component<'section.intern-section', false> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::homepage.homepage'
+    > &
+      Schema.Attribute.Private;
+    projectSection: Schema.Attribute.Component<
+      'section.project-section',
+      false
+    > &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    teamSection: Schema.Attribute.Component<'section.team', false> &
+      Schema.Attribute.Required;
+    testimonialSection: Schema.Attribute.Component<
+      'section.testimonial-section',
+      false
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    whatWeDoSection: Schema.Attribute.Component<
+      'section.what-we-do-section',
+      false
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ApiInternIntern extends Struct.CollectionTypeSchema {
   collectionName: 'interns';
   info: {
@@ -1099,6 +1149,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::global.global': ApiGlobalGlobal;
+      'api::homepage.homepage': ApiHomepageHomepage;
       'api::intern.intern': ApiInternIntern;
       'api::project.project': ApiProjectProject;
       'api::team.team': ApiTeamTeam;
