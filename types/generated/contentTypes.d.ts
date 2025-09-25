@@ -516,6 +516,8 @@ export interface ApiInternIntern extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 255;
       }>;
+    profileBackground: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     profileImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     socialMedia: Schema.Attribute.Component<'shared.social-media', true>;
@@ -585,6 +587,8 @@ export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 255;
       }>;
+    profileBackground: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required;
     profileImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     socialMedia: Schema.Attribute.Component<'shared.social-media', true>;

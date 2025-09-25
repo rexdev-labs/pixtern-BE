@@ -24,6 +24,12 @@
         "images"
       ]
     },
+    "backgroundColor": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "required": true
+    },
     "profileImage": {
       "type": "media",
       "multiple": false,
@@ -32,11 +38,13 @@
         "images"
       ]
     },
-    "backgroundColor": {
-      "type": "customField",
-      "customField": "plugin::color-picker.color",
-      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
-      "required": true
+    "profileBackground": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "socialMedia": {
       "type": "component",
