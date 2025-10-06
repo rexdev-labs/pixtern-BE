@@ -453,9 +453,7 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    heroSection: Schema.Attribute.Component<'shared.button', false> &
-      Schema.Attribute.Required;
-    internSection: Schema.Attribute.Component<'section.intern-section', false> &
+    heroSection: Schema.Attribute.Component<'section.hero-section', false> &
       Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -463,14 +461,17 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
       'api::homepage.homepage'
     > &
       Schema.Attribute.Private;
+    profileSection: Schema.Attribute.Component<
+      'section.who-we-are-section',
+      false
+    > &
+      Schema.Attribute.Required;
     projectSection: Schema.Attribute.Component<
       'section.project-section',
       false
     > &
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    teamSection: Schema.Attribute.Component<'section.team', false> &
-      Schema.Attribute.Required;
     testimonialSection: Schema.Attribute.Component<
       'section.testimonial-section',
       false
@@ -498,6 +499,7 @@ export interface ApiInternIntern extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    aboutMe: Schema.Attribute.String & Schema.Attribute.Required;
     avatarImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     backgroundColor: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -505,12 +507,15 @@ export interface ApiInternIntern extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    educations: Schema.Attribute.Component<'profile.education', true>;
+    fullName: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::intern.intern'
     > &
       Schema.Attribute.Private;
+    miniPortofolio: Schema.Attribute.Media<'images', true>;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -519,6 +524,37 @@ export interface ApiInternIntern extends Struct.CollectionTypeSchema {
     profileBackground: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
     profileImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Component<'profile.role', false> &
+      Schema.Attribute.Required;
+    socialMedia: Schema.Attribute.Component<'shared.social-media', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProfileProfile extends Struct.SingleTypeSchema {
+  collectionName: 'profiles';
+  info: {
+    displayName: 'Profile';
+    pluralName: 'profiles';
+    singularName: 'profile';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    about: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile.profile'
+    > &
+      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     socialMedia: Schema.Attribute.Component<'shared.social-media', true>;
     updatedAt: Schema.Attribute.DateTime;
@@ -572,6 +608,7 @@ export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    aboutMe: Schema.Attribute.Text & Schema.Attribute.Required;
     avatarImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     backgroundColor: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -579,18 +616,23 @@ export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    educations: Schema.Attribute.Component<'profile.education', true>;
+    fullName: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::team.team'> &
       Schema.Attribute.Private;
+    miniPortofolio: Schema.Attribute.Media<'images', true>;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 255;
       }>;
-    profileBackground: Schema.Attribute.Media<'images', true> &
+    profileBackground: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
     profileImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Component<'profile.role', false> &
+      Schema.Attribute.Required;
     socialMedia: Schema.Attribute.Component<'shared.social-media', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -609,7 +651,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    avatar: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    avatar: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1155,6 +1197,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::intern.intern': ApiInternIntern;
+      'api::profile.profile': ApiProfileProfile;
       'api::project.project': ApiProjectProject;
       'api::team.team': ApiTeamTeam;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;

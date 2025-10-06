@@ -13,7 +13,7 @@
   "attributes": {
     "heroSection": {
       "type": "component",
-      "component": "shared.button",
+      "component": "section.hero-section",
       "repeatable": false,
       "required": true
     },
@@ -23,15 +23,9 @@
       "repeatable": false,
       "required": true
     },
-    "teamSection": {
+    "profileSection": {
       "type": "component",
-      "component": "section.team",
-      "repeatable": false,
-      "required": true
-    },
-    "internSection": {
-      "type": "component",
-      "component": "section.intern-section",
+      "component": "section.who-we-are-section",
       "repeatable": false,
       "required": true
     },

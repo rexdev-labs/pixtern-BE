@@ -16,6 +16,20 @@
       "maxLength": 255,
       "required": true
     },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "aboutMe": {
+      "type": "text",
+      "required": true
+    },
+    "role": {
+      "type": "component",
+      "component": "profile.role",
+      "repeatable": false,
+      "required": true
+    },
     "avatarImage": {
       "type": "media",
       "multiple": false,
@@ -40,7 +54,7 @@
     },
     "profileBackground": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
@@ -50,6 +64,18 @@
       "type": "component",
       "component": "shared.social-media",
       "repeatable": true
+    },
+    "educations": {
+      "type": "component",
+      "component": "profile.education",
+      "repeatable": true
+    },
+    "miniPortofolio": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

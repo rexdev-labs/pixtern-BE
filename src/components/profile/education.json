@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_profile_educations",
+  "info": {
+    "displayName": "Education"
+  },
+  "options": {},
+  "attributes": {
+    "institutionName": {
+      "type": "string",
+      "required": true
+    },
+    "fieldOfStudy": {
+      "type": "string"
+    },
+    "startYear": {
+      "type": "integer",
+      "required": true
+    }
+  },
+  "config": {}
+}

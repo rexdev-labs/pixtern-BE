@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_profile_roles",
+  "info": {
+    "displayName": "Role"
+  },
+  "options": {},
+  "attributes": {
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "developer",
+        "illustrator",
+        "graphic designer"
+      ]
+    }
+  },
+  "config": {}
+}

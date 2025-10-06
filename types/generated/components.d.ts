@@ -1,5 +1,59 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ProfileEducation extends Struct.ComponentSchema {
+  collectionName: 'components_profile_educations';
+  info: {
+    displayName: 'Education';
+  };
+  attributes: {
+    fieldOfStudy: Schema.Attribute.String;
+    institutionName: Schema.Attribute.String & Schema.Attribute.Required;
+    startYear: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
+export interface ProfileRole extends Struct.ComponentSchema {
+  collectionName: 'components_profile_roles';
+  info: {
+    displayName: 'Role';
+  };
+  attributes: {
+    role: Schema.Attribute.Enumeration<
+      ['developer', 'illustrator', 'graphic designer']
+    >;
+  };
+}
+
+export interface ProfileSoftwareSkill extends Struct.ComponentSchema {
+  collectionName: 'components_profile_software_skills';
+  info: {
+    displayName: 'Software Skill';
+  };
+  attributes: {
+    software: Schema.Attribute.Enumeration<
+      [
+        'adobe photoshop',
+        'adobe illustrator',
+        'adobe premiere',
+        'capcut',
+        'figma',
+      ]
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface SectionHeroSection extends Struct.ComponentSchema {
+  collectionName: 'components_section_hero_sections';
+  info: {
+    displayName: 'Hero Section';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'shared.button', false> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface SectionInternSection extends Struct.ComponentSchema {
   collectionName: 'components_section_intern_sections';
   info: {
@@ -7,7 +61,8 @@ export interface SectionInternSection extends Struct.ComponentSchema {
   };
   attributes: {
     interns: Schema.Attribute.Relation<'oneToMany', 'api::intern.intern'>;
-    section: Schema.Attribute.Component<'shared.section', false>;
+    section: Schema.Attribute.Component<'shared.section', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -18,7 +73,8 @@ export interface SectionProjectSection extends Struct.ComponentSchema {
   };
   attributes: {
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
-    section: Schema.Attribute.Component<'shared.section', false>;
+    section: Schema.Attribute.Component<'shared.section', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -28,7 +84,8 @@ export interface SectionTeam extends Struct.ComponentSchema {
     displayName: 'Team Section';
   };
   attributes: {
-    section: Schema.Attribute.Component<'shared.section', false>;
+    section: Schema.Attribute.Component<'shared.section', false> &
+      Schema.Attribute.Required;
     teams: Schema.Attribute.Relation<'oneToMany', 'api::team.team'>;
   };
 }
@@ -39,12 +96,10 @@ export interface SectionTestimonialSection extends Struct.ComponentSchema {
     displayName: 'Testimonial Section';
   };
   attributes: {
-    subtitle: Schema.Attribute.String & Schema.Attribute.Required;
     testimonials: Schema.Attribute.Relation<
       'oneToMany',
       'api::testimonial.testimonial'
     >;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -54,10 +109,25 @@ export interface SectionWhatWeDoSection extends Struct.ComponentSchema {
     displayName: 'What We Do Section';
   };
   attributes: {
-    jobs: Schema.Attribute.Component<'shared.job', true> &
-      Schema.Attribute.Required;
+    jobs: Schema.Attribute.Component<'shared.job', true>;
     section: Schema.Attribute.Component<'shared.section', false> &
       Schema.Attribute.Required;
+  };
+}
+
+export interface SectionWhoWeAreSection extends Struct.ComponentSchema {
+  collectionName: 'components_section_who_we_are_sections';
+  info: {
+    displayName: 'Who We Are Section';
+  };
+  attributes: {
+    internSection: Schema.Attribute.Component<'section.intern-section', false> &
+      Schema.Attribute.Required;
+    teamSection: Schema.Attribute.Component<'section.team', false> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'title'>;
   };
 }
 
@@ -175,11 +245,16 @@ export interface SharedSocialMedia extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'profile.education': ProfileEducation;
+      'profile.role': ProfileRole;
+      'profile.software-skill': ProfileSoftwareSkill;
+      'section.hero-section': SectionHeroSection;
       'section.intern-section': SectionInternSection;
       'section.project-section': SectionProjectSection;
       'section.team': SectionTeam;
       'section.testimonial-section': SectionTestimonialSection;
       'section.what-we-do-section': SectionWhatWeDoSection;
+      'section.who-we-are-section': SectionWhoWeAreSection;
       'shared.button': SharedButton;
       'shared.job': SharedJob;
       'shared.media': SharedMedia;

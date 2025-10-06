@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_section_who_we_are_sections",
+  "info": {
+    "displayName": "Who We Are Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "title",
+      "required": true
+    },
+    "teamSection": {
+      "type": "component",
+      "component": "section.team",
+      "repeatable": false,
+      "required": true
+    },
+    "internSection": {
+      "type": "component",
+      "component": "section.intern-section",
+      "repeatable": false,
+      "required": true
+    }
+  },
+  "config": {}
+}
