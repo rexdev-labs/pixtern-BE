@@ -1,5 +1,23 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface FooterCategory extends Struct.ComponentSchema {
+  collectionName: 'components_footer_categories';
+  info: {
+    displayName: 'Category';
+  };
+  attributes: {
+    links: Schema.Attribute.Component<'shared.link', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ProfileEducation extends Struct.ComponentSchema {
   collectionName: 'components_profile_educations';
   info: {
@@ -40,6 +58,31 @@ export interface ProfileSoftwareSkill extends Struct.ComponentSchema {
       ]
     > &
       Schema.Attribute.Required;
+  };
+}
+
+export interface SectionFooter extends Struct.ComponentSchema {
+  collectionName: 'components_section_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    groups: Schema.Attribute.Component<'footer.category', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    message: Schema.Attribute.Text;
+    socialMedia: Schema.Attribute.Component<'shared.social-media', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
   };
 }
 
@@ -109,7 +152,7 @@ export interface SectionWhatWeDoSection extends Struct.ComponentSchema {
     displayName: 'What We Do Section';
   };
   attributes: {
-    jobs: Schema.Attribute.Component<'shared.job', true>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
     section: Schema.Attribute.Component<'shared.section', false> &
       Schema.Attribute.Required;
   };
@@ -141,51 +184,18 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedJob extends Struct.ComponentSchema {
-  collectionName: 'components_shared_jobs';
+export interface SharedLink extends Struct.ComponentSchema {
+  collectionName: 'components_shared_links';
   info: {
-    displayName: 'Job';
-    icon: 'check';
+    displayName: 'Link';
   };
   attributes: {
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-    illustration: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
-export interface SharedMedia extends Struct.ComponentSchema {
-  collectionName: 'components_shared_media';
-  info: {
-    displayName: 'Media';
-    icon: 'file-video';
-  };
-  attributes: {
-    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-  };
-}
-
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    body: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedRichText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_rich_texts';
-  info: {
-    description: '';
-    displayName: 'Rich text';
-    icon: 'align-justify';
-  };
-  attributes: {
-    body: Schema.Attribute.RichText;
+    href: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
   };
 }
 
@@ -215,18 +225,6 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
-  info: {
-    description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
-  };
-  attributes: {
-    files: Schema.Attribute.Media<'images', true>;
-  };
-}
-
 export interface SharedSocialMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_social_medias';
   info: {
@@ -245,9 +243,11 @@ export interface SharedSocialMedia extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'footer.category': FooterCategory;
       'profile.education': ProfileEducation;
       'profile.role': ProfileRole;
       'profile.software-skill': ProfileSoftwareSkill;
+      'section.footer': SectionFooter;
       'section.hero-section': SectionHeroSection;
       'section.intern-section': SectionInternSection;
       'section.project-section': SectionProjectSection;
@@ -256,13 +256,9 @@ declare module '@strapi/strapi' {
       'section.what-we-do-section': SectionWhatWeDoSection;
       'section.who-we-are-section': SectionWhoWeAreSection;
       'shared.button': SharedButton;
-      'shared.job': SharedJob;
-      'shared.media': SharedMedia;
-      'shared.quote': SharedQuote;
-      'shared.rich-text': SharedRichText;
+      'shared.link': SharedLink;
       'shared.section': SharedSection;
       'shared.seo': SharedSeo;
-      'shared.slider': SharedSlider;
       'shared.social-media': SharedSocialMedia;
     }
   }

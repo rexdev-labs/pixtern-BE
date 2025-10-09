@@ -30,7 +30,7 @@
     },
     "review": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "rating": {
       "type": "integer",

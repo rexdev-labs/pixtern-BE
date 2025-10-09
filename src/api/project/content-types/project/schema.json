@@ -11,6 +11,14 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
     "preview": {
       "type": "media",
       "multiple": false,
@@ -18,15 +26,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "title": {
-      "type": "string",
-      "maxLength": 255,
-      "required": true
-    },
-    "description": {
-      "type": "text",
-      "required": true
     }
   }
 }

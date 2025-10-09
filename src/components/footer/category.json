@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_footer_categories",
+  "info": {
+    "displayName": "Category"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true,
+      "required": true,
+      "max": 5
+    }
+  },
+  "config": {}
+}

@@ -34,6 +34,12 @@
       "type": "component",
       "component": "shared.seo",
       "repeatable": false
+    },
+    "footer": {
+      "type": "component",
+      "component": "section.footer",
+      "repeatable": false,
+      "required": true
     }
   }
 }

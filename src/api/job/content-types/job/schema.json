@@ -1,10 +1,15 @@
 {
-  "collectionName": "components_shared_jobs",
+  "kind": "collectionType",
+  "collectionName": "jobs",
   "info": {
-    "displayName": "Job",
-    "icon": "check"
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job"
   },
-  "options": {},
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -14,7 +19,7 @@
       "type": "text",
       "required": true
     },
-    "illustration": {
+    "avatar": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -22,6 +27,5 @@
         "images"
       ]
     }
-  },
-  "config": {}
+  }
 }

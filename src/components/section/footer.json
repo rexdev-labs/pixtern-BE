@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_section_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "message": {
+      "type": "text"
+    },
+    "socialMedia": {
+      "type": "component",
+      "component": "shared.social-media",
+      "repeatable": true,
+      "max": 3
+    },
+    "groups": {
+      "type": "component",
+      "component": "footer.category",
+      "repeatable": true,
+      "required": false,
+      "max": 3
+    }
+  },
+  "config": {}
+}

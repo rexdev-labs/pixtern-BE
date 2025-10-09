@@ -12,10 +12,9 @@
       "required": true
     },
     "jobs": {
-      "type": "component",
-      "component": "shared.job",
-      "repeatable": true,
-      "required": false
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
     }
   },
   "config": {}
