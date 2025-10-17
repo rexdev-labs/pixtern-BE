@@ -1,0 +1,76 @@
+{
+  "collectionName": "components_profile_details",
+  "info": {
+    "displayName": "Detail"
+  },
+  "options": {},
+  "attributes": {
+    "aboutMe": {
+      "type": "text",
+      "required": false
+    },
+    "role": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "developer",
+        "illustrator",
+        "graphic designer"
+      ]
+    },
+    "avatarImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "personImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "originalImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "backgroundColor": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "required": true
+    },
+    "portofolio": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "skills": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

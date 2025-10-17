@@ -19,7 +19,7 @@
       "type": "text",
       "required": true
     },
-    "avatar": {
+    "illustration": {
       "type": "media",
       "multiple": false,
       "required": true,

@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "profiles",
+  "collectionName": "company_profiles",
   "info": {
-    "singularName": "profile",
-    "pluralName": "profiles",
-    "displayName": "Profile"
+    "singularName": "company-profile",
+    "pluralName": "company-profiles",
+    "displayName": "Company Profile"
   },
   "options": {
     "draftAndPublish": true
@@ -12,13 +12,14 @@
   "pluginOptions": {},
   "attributes": {
     "about": {
-      "type": "blocks",
+      "type": "text",
       "required": true
     },
     "socialMedia": {
       "type": "component",
       "component": "shared.social-media",
-      "repeatable": true
+      "repeatable": true,
+      "required": false
     }
   }
 }

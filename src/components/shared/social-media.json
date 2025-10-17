@@ -7,20 +7,20 @@
   "options": {},
   "attributes": {
     "platform": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "youtube",
-        "linkedin",
-        "instagram",
-        "telegram",
-        "facebook",
-        "github"
-      ]
+      "type": "string",
+      "required": true
     },
     "url": {
       "type": "string",
       "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   },
   "config": {}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_staff_profile_interns",
+  "info": {
+    "displayName": "Interns"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "integer",
+      "required": true
+    },
+    "interns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::intern.intern"
+    }
+  },
+  "config": {}
+}

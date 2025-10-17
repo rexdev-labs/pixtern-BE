@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_quotes",
+  "info": {
+    "displayName": "Quotes"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "integer",
+      "required": true
+    },
+    "quotes": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

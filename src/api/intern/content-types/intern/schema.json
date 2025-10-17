@@ -11,6 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "fullName",
+      "required": true
+    },
     "name": {
       "type": "string",
       "maxLength": 255,
@@ -20,45 +25,21 @@
       "type": "string",
       "required": true
     },
-    "aboutMe": {
-      "type": "string",
+    "year": {
+      "type": "integer",
       "required": true
     },
-    "role": {
+    "detail": {
       "type": "component",
-      "component": "profile.role",
+      "component": "profile.detail",
       "repeatable": false,
       "required": true
     },
-    "avatarImage": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "backgroundColor": {
-      "type": "customField",
-      "customField": "plugin::color-picker.color",
-      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
-      "required": true
-    },
-    "profileImage": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "profileBackground": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+    "decoration": {
+      "type": "component",
+      "component": "profile.decoration",
+      "repeatable": false,
+      "required": false
     },
     "socialMedia": {
       "type": "component",
@@ -70,16 +51,10 @@
       "component": "profile.education",
       "repeatable": true
     },
-    "miniPortofolio": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "quotes": {
-      "type": "text",
-      "required": false
+      "type": "component",
+      "component": "shared.quotes",
+      "repeatable": false
     }
   }
 }

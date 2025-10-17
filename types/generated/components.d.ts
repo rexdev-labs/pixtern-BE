@@ -18,6 +18,48 @@ export interface FooterCategory extends Struct.ComponentSchema {
   };
 }
 
+export interface ProfileDecoration extends Struct.ComponentSchema {
+  collectionName: 'components_profile_decorations';
+  info: {
+    displayName: 'Decoration';
+  };
+  attributes: {
+    aboutUsFirstOrnament: Schema.Attribute.Media<'images'>;
+    aboutUsSecondOrnament: Schema.Attribute.Media<'images'>;
+    avatarPosition: Schema.Attribute.Enumeration<['left', 'right']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'left'>;
+    photoOrnament: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    photoOrnamentPosition: Schema.Attribute.Enumeration<['left', 'right']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'left'>;
+  };
+}
+
+export interface ProfileDetail extends Struct.ComponentSchema {
+  collectionName: 'components_profile_details';
+  info: {
+    displayName: 'Detail';
+  };
+  attributes: {
+    aboutMe: Schema.Attribute.Text;
+    avatarImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    backgroundColor: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<'plugin::color-picker.color'>;
+    backgroundImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    originalImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    personImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    portofolio: Schema.Attribute.Media<'images', true>;
+    role: Schema.Attribute.Enumeration<
+      ['developer', 'illustrator', 'graphic designer']
+    > &
+      Schema.Attribute.Required;
+    skills: Schema.Attribute.Media<'images', true>;
+  };
+}
+
 export interface ProfileEducation extends Struct.ComponentSchema {
   collectionName: 'components_profile_educations';
   info: {
@@ -27,37 +69,6 @@ export interface ProfileEducation extends Struct.ComponentSchema {
     fieldOfStudy: Schema.Attribute.String;
     institutionName: Schema.Attribute.String & Schema.Attribute.Required;
     startYear: Schema.Attribute.Integer & Schema.Attribute.Required;
-  };
-}
-
-export interface ProfileRole extends Struct.ComponentSchema {
-  collectionName: 'components_profile_roles';
-  info: {
-    displayName: 'Role';
-  };
-  attributes: {
-    role: Schema.Attribute.Enumeration<
-      ['developer', 'illustrator', 'graphic designer']
-    >;
-  };
-}
-
-export interface ProfileSoftwareSkill extends Struct.ComponentSchema {
-  collectionName: 'components_profile_software_skills';
-  info: {
-    displayName: 'Software Skill';
-  };
-  attributes: {
-    software: Schema.Attribute.Enumeration<
-      [
-        'adobe photoshop',
-        'adobe illustrator',
-        'adobe premiere',
-        'capcut',
-        'figma',
-      ]
-    > &
-      Schema.Attribute.Required;
   };
 }
 
@@ -199,6 +210,17 @@ export interface SharedLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedQuotes extends Struct.ComponentSchema {
+  collectionName: 'components_shared_quotes';
+  info: {
+    displayName: 'Quotes';
+  };
+  attributes: {
+    quotes: Schema.Attribute.Text & Schema.Attribute.Required;
+    year: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSection extends Struct.ComponentSchema {
   collectionName: 'components_shared_sections';
   info: {
@@ -232,11 +254,20 @@ export interface SharedSocialMedia extends Struct.ComponentSchema {
     icon: 'paperPlane';
   };
   attributes: {
-    platform: Schema.Attribute.Enumeration<
-      ['youtube', 'linkedin', 'instagram', 'telegram', 'facebook', 'github']
-    > &
-      Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    platform: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface StaffProfileInterns extends Struct.ComponentSchema {
+  collectionName: 'components_staff_profile_interns';
+  info: {
+    displayName: 'Interns';
+  };
+  attributes: {
+    interns: Schema.Attribute.Relation<'oneToMany', 'api::intern.intern'>;
+    year: Schema.Attribute.Integer & Schema.Attribute.Required;
   };
 }
 
@@ -244,9 +275,9 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'footer.category': FooterCategory;
+      'profile.decoration': ProfileDecoration;
+      'profile.detail': ProfileDetail;
       'profile.education': ProfileEducation;
-      'profile.role': ProfileRole;
-      'profile.software-skill': ProfileSoftwareSkill;
       'section.footer': SectionFooter;
       'section.hero-section': SectionHeroSection;
       'section.intern-section': SectionInternSection;
@@ -257,9 +288,11 @@ declare module '@strapi/strapi' {
       'section.who-we-are-section': SectionWhoWeAreSection;
       'shared.button': SharedButton;
       'shared.link': SharedLink;
+      'shared.quotes': SharedQuotes;
       'shared.section': SharedSection;
       'shared.seo': SharedSeo;
       'shared.social-media': SharedSocialMedia;
+      'staff-profile.interns': StaffProfileInterns;
     }
   }
 }
