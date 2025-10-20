@@ -15,6 +15,9 @@
       "type": "string",
       "required": true
     },
+    "excerpt": {
+      "type": "string"
+    },
     "description": {
       "type": "text",
       "required": true

@@ -545,6 +545,7 @@ export interface ApiJobJob extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
+    excerpt: Schema.Attribute.String;
     illustration: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
@@ -696,6 +697,35 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 255;
       }>;
+  };
+}
+
+export interface ApiWhatWeDoWhatWeDo extends Struct.SingleTypeSchema {
+  collectionName: 'what_we_dos';
+  info: {
+    displayName: 'What We Do';
+    pluralName: 'what-we-dos';
+    singularName: 'what-we-do';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    documentation: Schema.Attribute.Media<'images', true>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::what-we-do.what-we-do'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1217,6 +1247,7 @@ declare module '@strapi/strapi' {
       'api::staff-profile.staff-profile': ApiStaffProfileStaffProfile;
       'api::team.team': ApiTeamTeam;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
+      'api::what-we-do.what-we-do': ApiWhatWeDoWhatWeDo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

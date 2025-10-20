@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "what_we_dos",
+  "info": {
+    "singularName": "what-we-do",
+    "pluralName": "what-we-dos",
+    "displayName": "What We Do"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
+    },
+    "documentation": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
