@@ -19,21 +19,20 @@
     "favicon": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos"
+        "images"
       ]
     },
     "siteDescription": {
       "type": "text",
       "required": true
     },
-    "defaultSeo": {
+    "navbar": {
       "type": "component",
-      "component": "shared.seo",
-      "repeatable": false
+      "component": "navbar.navbar",
+      "repeatable": false,
+      "required": true
     },
     "footer": {
       "type": "component",

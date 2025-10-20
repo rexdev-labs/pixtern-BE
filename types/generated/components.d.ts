@@ -18,6 +18,29 @@ export interface FooterCategory extends Struct.ComponentSchema {
   };
 }
 
+export interface NavbarNavbar extends Struct.ComponentSchema {
+  collectionName: 'components_navbar_navbars';
+  info: {
+    displayName: 'Navbar';
+  };
+  attributes: {
+    darkIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    lightIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    navigations: Schema.Attribute.Component<'navbar.navigation', true>;
+  };
+}
+
+export interface NavbarNavigation extends Struct.ComponentSchema {
+  collectionName: 'components_navbar_navigations';
+  info: {
+    displayName: 'Navigation';
+  };
+  attributes: {
+    href: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ProfileDecoration extends Struct.ComponentSchema {
   collectionName: 'components_profile_decorations';
   info: {
@@ -275,6 +298,8 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'footer.category': FooterCategory;
+      'navbar.navbar': NavbarNavbar;
+      'navbar.navigation': NavbarNavigation;
       'profile.decoration': ProfileDecoration;
       'profile.detail': ProfileDetail;
       'profile.education': ProfileEducation;

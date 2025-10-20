@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_navbar_navbars",
+  "info": {
+    "displayName": "Navbar"
+  },
+  "options": {},
+  "attributes": {
+    "darkIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "lightIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "navigations": {
+      "type": "component",
+      "component": "navbar.navigation",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
